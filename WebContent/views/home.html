@@ -1,0 +1,77 @@
+<div class="container" style="margin-top:60px;" >
+
+	<form name="myForm" class="form-group" ng-init="value1=false" ng-submit="save()">
+		
+	<!-- Name section starts -->
+			<label for="name">Name:</label>
+			<input type="text" class="form-control" 
+			  placeholder="Enter Your Name" name="name" 
+			  ng-model="name" ng-blur="name != '' ? value1=false:value1=true"
+			  required="true" 
+			/>
+			
+			<div ng-show="value1 == true" class="alert alert-success" >
+			  Hi <strong>{{name}}</strong> Welcome!
+			</div>
+
+			<div ng-messages="myForm.name.$error" style="color:maroon" role="alert">
+				<div ng-message="required">You did not enter a field</div>
+			</div>
+	<!-- Name section Ends -->
+
+		<br/>
+
+	<!-- Email section starts -->
+			<label for="email">Email:</label>
+			<input type="email" class="form-control" 
+			placeholder="Enter email" name="email" 
+			ng-model-options="{ updateOn: 'default blur' }"
+			ng-model="emailId" ng-focus="value1 = true && name != ''" 
+			ng-blur="getDomain(emailId)" required="true" />
+
+			<div ng-show="showDomain == true" class="alert alert-success" >
+			  You are using {{domainCroped}}!
+			</div>      
+
+			<div ng-messages="myForm.email.$error" style="color:maroon" role="alert">
+				<div ng-message="required">You did not enter a field</div>
+			</div>
+	<!-- Email section Ends -->
+
+		<br/>
+
+	<!-- Hobbies section Strats -->
+			<label>Select your hobbies</label> 	
+			<span ng-repeat="item in hobbiesOptions">
+			<input type="checkbox" id="{{item}}" ng-model="hobyList[item]"/>
+			<label for="{{item}}">{{item}}</label>
+			</span>
+	<!-- Hobbies section Ends -->
+		
+		<br/>
+		<br/>
+
+	<!-- Comment section Starts -->
+			<label for="comment">Comment:</label>
+			<textarea type="text" class="form-control" name="commentArea" ng-model="comment" 
+			ng-maxlength="100" required="true" ng-focus="checkList()"></textarea>
+
+			<div ng-messages="myForm.commentArea.$error" style="color:maroon" role="alert">
+			<div ng-message="required">You did not enter a field</div>
+			<div ng-message="maxlength">Your field is too long</div>
+			</div>
+	<!-- Comment section Ends -->
+
+		<br/>
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+
+	<div>Result: {{result}}</div>
+
+	<div>
+	<!-- NOTE: Here in below we are using href="#!/xyz because Routes in Angular 1.6 changed from #/myUrl to #!/myUrl"-->
+	<a href="#!/personlist">view</a>
+	</div>
+
+</div>

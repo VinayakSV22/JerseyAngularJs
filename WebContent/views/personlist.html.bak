@@ -1,0 +1,51 @@
+<div class="container">
+	
+	<table class="table">
+	<thead class="thead-inverse">
+		<tr>
+			<td>Name</td>
+			<td>EmailIds</td>
+			<td>Hobbies</td>
+			<td>Comments</td>
+			<td>Actions (<a style="cursor:pointer; "><img ng-src="{{delete_icon}}" alt="delete image" ng-click="($index == !selectedDeleteIcon) || mainsWithDescription.splice($index,1)" height="20" width="20" /> 
+			</a>)
+			</td>
+		</tr>
+	
+		  <tr ng-repeat="person in personList">
+		    <td ng-if="$odd" style="background-color:#f1f1f1">
+		    {{ person.name }}</td>
+		    <td ng-if="$even">
+		    {{ person.name }}</td>
+
+		    <td ng-if="$odd" style="background-color:#f1f1f1">
+		    {{ person.emailId }}{{$last ? '' : ', '}}</td>
+		    <td ng-if="$even">
+		    {{ person.emailId }}{{$last ? '' : ', '}}</td>
+
+		    
+		    <td ng-if="$odd" style="background-color:#f1f1f1">
+		    {{person.hobbies | join:','}}</td>
+		    <td ng-if="$even">
+		    {{person.hobbies | join:','}}</td>
+		    
+
+		    <td ng-if="$odd" style="background-color:#f1f1f1">
+		    {{ person.comment }}</td>
+		    <td ng-if="$even">
+		    {{ person.comment }}</td>
+
+			<td ng-if="$odd" style="background-color:#f1f1f1">
+		    <a style="cursor:pointer"><img ng-src="{{delete_icon}}" alt="delete image" ng-click="deleteById({{person.id}})" height="20" width="20" /> 
+			</a>
+			</td>
+		    <td ng-if="$even">
+		    <a style="cursor:pointer; "><img ng-src="{{delete_icon}}" alt="delete image" ng-click="deleteById(person.id)" height="20" width="20" /> 
+			</a>
+			</td>
+
+		  </tr>
+		  </thead>
+	</table>
+
+</div>
